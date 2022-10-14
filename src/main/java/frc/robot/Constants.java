@@ -18,4 +18,7 @@ public final class Constants {
 
   // Controller deadband
   public static final double CONTROLLER_DEADBAND = 0.1;
+
+  // Accessories
+  public static final int BLINKIN_LED_CONTROLLER_PORT = 0;
 }
