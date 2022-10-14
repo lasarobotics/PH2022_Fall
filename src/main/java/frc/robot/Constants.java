@@ -12,4 +12,10 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+	// Robot tick rate in seconds
+  public static final double ROBOT_LOOP_PERIOD = 1.0 / 60.0;
+
+  // Controller deadband
+  public static final double CONTROLLER_DEADBAND = 0.1;
+}
