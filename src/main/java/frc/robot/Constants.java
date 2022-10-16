@@ -21,4 +21,7 @@ public final class Constants {
 
   // Accessories
   public static final int BLINKIN_LED_CONTROLLER_PORT = 0;
+
+  // Shooter
+  public static final int SHOOTER_MOTOR_PORT = 12; // I think, not sure, will confirm later
 }
