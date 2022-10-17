@@ -8,26 +8,36 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class ShooterSubsystem extends SubsystemBase {
   public static class Hardware {
-    private TalonSRX ShooterMotor;
+    private TalonSRX shooterMotor;
+    private TalonSRX beltMotor;
 
-    public Hardware(TalonSRX ShooterMotor) {
-      this.ShooterMotor = ShooterMotor;
+    public Hardware(TalonSRX shooterMotor, TalonSRX beltMotor) {
+      this.shooterMotor = shooterMotor;
+      this.beltMotor = beltMotor;
     }
   }
 
   TalonSRX m_ShooterMotor;
+  TalonSRX m_BeltMotor;
 
   public ShooterSubsystem(Hardware shooterHardware) {
-    m_ShooterMotor = shooterHardware.ShooterMotor;
+    m_ShooterMotor = shooterHardware.shooterMotor;
+    m_BeltMotor = shooterHardware.beltMotor;
   }
   
   public static Hardware initializeHardware() {
-    Hardware shooterHardware = new Hardware(new TalonSRX(Constants.SHOOTER_MOTOR_PORT));
+    Hardware shooterHardware = new Hardware(new TalonSRX(Constants.SHOOTER_MOTOR_PORT),
+                                            new TalonSRX(Constants.BELT_MOTOR_PORT));
     return shooterHardware;
   }
   
-  public void shoot(double speed) {
-    m_ShooterMotor.set(ControlMode.PercentOutput, speed);
+  public void shoot(double flywheelSpeed, double beltSpeed) {
+    m_ShooterMotor.set(ControlMode.PercentOutput, flywheelSpeed);
+    m_BeltMotor.set(ControlMode.PercentOutput, beltSpeed);
+  }
+
+  public void runBelt(double beltSpeed) {
+    m_BeltMotor.set(ControlMode.PercentOutput, beltSpeed);
   }
 
   @Override
