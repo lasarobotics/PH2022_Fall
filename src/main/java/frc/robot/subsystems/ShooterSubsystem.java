@@ -7,13 +7,25 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class ShooterSubsystem extends SubsystemBase {
+  public static class Hardware {
+    private TalonSRX ShooterMotor;
+
+    public Hardware(TalonSRX ShooterMotor) {
+      this.ShooterMotor = ShooterMotor;
+    }
+  }
 
   TalonSRX m_ShooterMotor;
 
-  public ShooterSubsystem() {
-    m_ShooterMotor = new TalonSRX(Constants.SHOOTER_MOTOR_PORT);
+  public ShooterSubsystem(Hardware shooterHardware) {
+    m_ShooterMotor = shooterHardware.ShooterMotor;
   }
-
+  
+  public static Hardware initializeHardware() {
+    Hardware shooterHardware = new Hardware(new TalonSRX(Constants.SHOOTER_MOTOR_PORT));
+    return shooterHardware;
+  }
+  
   public void shoot(double speed) {
     m_ShooterMotor.set(ControlMode.PercentOutput, speed);
   }
