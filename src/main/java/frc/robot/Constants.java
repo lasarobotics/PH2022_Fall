@@ -23,7 +23,8 @@ public final class Constants {
   public static final int BLINKIN_LED_CONTROLLER_PORT = 0;
 
   // Drive motor ports (XXXXXXX TODO get real port numbers XXXXXXX)
-  public static final int LEFT_MOTOR_PORT = 2;
-  public static final int RIGHT_MOTOR_PORT = 3;
-  public static final int SPIN_MOTOR_PORT = 4;
+  public static final int ARM_MOTOR_PORT = 3;
+  public static final int ROLLER_MOTOR_PORT = 4;
+  public static final double SPIN_MOTOR_SPEED = 0.5;
+  public static final double ARM_MOTOR_SPEED = 0.2;
 }
