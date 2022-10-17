@@ -21,4 +21,10 @@ public final class Constants {
 
   // Accessories
   public static final int BLINKIN_LED_CONTROLLER_PORT = 0;
+  public static final int PRIMARY_CONTROLLER_PORT = 0;
+
+  // Winch Subsystem
+  public static final int CLIMBER_WINCH_MOTOR_PORT = 1;
+  public static final double CLIMBER_WINCH_MOTOR_MAX = 100.0;
+  public static final double CLIMBER_WINCH_MOTOR_MIN = 0.0;
 }
