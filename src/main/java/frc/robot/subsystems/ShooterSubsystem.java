@@ -3,22 +3,22 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class ShooterSubsystem extends SubsystemBase {
   public static class Hardware {
-    private TalonSRX shooterMotor;
-    private TalonSRX beltMotor;
+    private WPI_TalonSRX shooterMotor;
+    private WPI_TalonSRX beltMotor;
 
-    public Hardware(TalonSRX shooterMotor, TalonSRX beltMotor) {
+    public Hardware(WPI_TalonSRX shooterMotor, WPI_TalonSRX beltMotor) {
       this.shooterMotor = shooterMotor;
       this.beltMotor = beltMotor;
     }
   }
 
-  TalonSRX m_ShooterMotor;
-  TalonSRX m_BeltMotor;
+  WPI_TalonSRX m_ShooterMotor;
+  WPI_TalonSRX m_BeltMotor;
 
   public ShooterSubsystem(Hardware shooterHardware) {
     m_ShooterMotor = shooterHardware.shooterMotor;
@@ -26,8 +26,8 @@ public class ShooterSubsystem extends SubsystemBase {
   }
   
   public static Hardware initializeHardware() {
-    Hardware shooterHardware = new Hardware(new TalonSRX(Constants.SHOOTER_MOTOR_PORT),
-                                            new TalonSRX(Constants.BELT_MOTOR_PORT));
+    Hardware shooterHardware = new Hardware(new WPI_TalonSRX(Constants.SHOOTER_MOTOR_PORT),
+                                            new WPI_TalonSRX(Constants.BELT_MOTOR_PORT));
     return shooterHardware;
   }
   
