@@ -4,19 +4,16 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-import frc.robot.Constants;
-import frc.robot.utils.SparkMax;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import frc.robot.utils.SparkMax;
 
-public class ClimbSubsystem extends SubsystemBase {
+public class ClimberSubsystem extends SubsystemBase {
   public static class Hardware {
     private SparkMax winchMotor;
-
 
     public Hardware(SparkMax winchMotor){
       this.winchMotor = winchMotor;
@@ -26,34 +23,34 @@ public class ClimbSubsystem extends SubsystemBase {
   private SparkMax m_winchMotor;
 
   /** Creates a new ExampleSubsystem. */
-  public ClimbSubsystem(Hardware climberHardware) {
+  public ClimberSubsystem(Hardware climberHardware) {
     this.m_winchMotor = climberHardware.winchMotor;
   }
 
   public static Hardware initializeHardware() {
-      Hardware climberHardware = new Hardware(new SparkMax(Constants.CLIMBER_WINCH_MOTOR_PORT, MotorType.kBrushless));
-      return climberHardware;
+    Hardware climberHardware = new Hardware(new SparkMax(Constants.CLIMBER_WINCH_MOTOR_PORT, MotorType.kBrushless));
+    return climberHardware;
   }
 
   public void initialize() {
-      winchSetPosition(0.0);
+    winchSetPosition(0.0);
   }
 
   public void winchUp() {
-      winchSetPosition(Constants.CLIMBER_WINCH_MOTOR_MAX);
+    winchSetPosition(Constants.CLIMBER_WINCH_MOTOR_MAX);
   }
 
   public void winchDown() {
-      winchSetPosition(Constants.CLIMBER_WINCH_MOTOR_MIN);
+    winchSetPosition(Constants.CLIMBER_WINCH_MOTOR_MIN);
   }
 
   public void winchStop() {
-      m_winchMotor.stopMotor();
+    m_winchMotor.stopMotor();
   }
 
-  public void winchSetPosition(double position){
-      position = MathUtil.clamp(position, Constants.CLIMBER_WINCH_MOTOR_MIN, Constants.CLIMBER_WINCH_MOTOR_MAX);
-      m_winchMotor.set(position);
+  public void winchSetPosition(double position) {
+    position = MathUtil.clamp(position, Constants.CLIMBER_WINCH_MOTOR_MIN, Constants.CLIMBER_WINCH_MOTOR_MAX);
+    m_winchMotor.set(position);
   }
 
 
@@ -68,6 +65,6 @@ public class ClimbSubsystem extends SubsystemBase {
   }
 
   public void close() {
-      m_winchMotor.close();
+    m_winchMotor.close();
   }
 }
