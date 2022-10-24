@@ -30,4 +30,7 @@ public final class Constants {
   public static final int FRONT_RIGHT_MOTOR_PORT = 3;
   public static final int REAR_LEFT_MOTOR_PORT = 4;
   public static final int REAR_RIGHT_MOTOR_PORT = 5;
+  // Shooter
+  public static final int SHOOTER_MOTOR_PORT = 12;
+  public static final int BELT_MOTOR_PORT = 14;
 }
