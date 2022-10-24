@@ -36,8 +36,9 @@ public class ShooterSubsystem extends SubsystemBase {
     m_BeltMotor.set(ControlMode.PercentOutput, beltSpeed);
   }
 
-  public void runBelt(double beltSpeed) {
-    m_BeltMotor.set(ControlMode.PercentOutput, beltSpeed);
+  public void stop() {
+    m_ShooterMotor.set(ControlMode.PercentOutput, 0);
+    m_BeltMotor.set(ControlMode.PercentOutput, 0); 
   }
 
   @Override
