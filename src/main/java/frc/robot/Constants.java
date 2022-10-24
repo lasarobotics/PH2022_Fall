@@ -33,4 +33,9 @@ public final class Constants {
   // Shooter
   public static final int SHOOTER_MOTOR_PORT = 12;
   public static final int BELT_MOTOR_PORT = 14;
+
+  // Winch Subsystem
+  public static final int CLIMBER_WINCH_MOTOR_PORT = 3;
+  public static final double CLIMBER_WINCH_MOTOR_MAX = 100.0;
+  public static final double CLIMBER_WINCH_MOTOR_MIN = 0.0;
 }
