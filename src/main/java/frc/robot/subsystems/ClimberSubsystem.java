@@ -4,23 +4,23 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.utils.SparkMax;
+import frc.robot.Constants; 
 
 public class ClimberSubsystem extends SubsystemBase {
   public static class Hardware {
-    private SparkMax winchMotor;
+    private WPI_TalonSRX winchMotor;
 
-    public Hardware(SparkMax winchMotor){
+    public Hardware(WPI_TalonSRX winchMotor){
       this.winchMotor = winchMotor;
     }
   }
 
-  private SparkMax m_winchMotor;
+  private WPI_TalonSRX m_winchMotor;
 
   /** Creates a new ExampleSubsystem. */
   public ClimberSubsystem(Hardware climberHardware) {
@@ -28,7 +28,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public static Hardware initializeHardware() {
-    Hardware climberHardware = new Hardware(new SparkMax(Constants.CLIMBER_WINCH_MOTOR_PORT, MotorType.kBrushless));
+    Hardware climberHardware = new Hardware(new WPI_TalonSRX(Constants.CLIMBER_WINCH_MOTOR_PORT));
     return climberHardware;
   }
 
@@ -48,11 +48,14 @@ public class ClimberSubsystem extends SubsystemBase {
     m_winchMotor.stopMotor();
   }
 
+  public void winchSpeed(double speed){
+    m_winchMotor.set(ControlMode.PercentOutput, speed);
+  }
+
   public void winchSetPosition(double position) {
     position = MathUtil.clamp(position, Constants.CLIMBER_WINCH_MOTOR_MIN, Constants.CLIMBER_WINCH_MOTOR_MAX);
     m_winchMotor.set(position);
   }
-
 
   @Override
   public void periodic() {
