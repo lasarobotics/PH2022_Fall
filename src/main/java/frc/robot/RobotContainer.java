@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,6 +29,8 @@ public class RobotContainer {
   private static final DriveSubsystem DRIVE_SUBSYSTEM = new DriveSubsystem(DriveSubsystem.initializeHardware(),
                                                                            Constants.CONTROLLER_DEADBAND);
   private static final ClimberSubsystem CLIMBER_SUBSYSTEM = new ClimberSubsystem(ClimberSubsystem.initializeHardware());
+  private static final IntakeSubsystem  INTAKE_SUBSYSTEM = new IntakeSubsystem(IntakeSubsystem.initializeHardware());
+  private static final ShooterSubsystem SHOOTER_SUBSYSTEM = new ShooterSubsystem(ShooterSubsystem.initializeHardware());
   
   private static final XboxController PRIMARY_CONTROLLER = new XboxController(Constants.PRIMARY_CONTROLLER_PORT);
 
@@ -73,6 +77,23 @@ public class RobotContainer {
     primaryDPadDown.whenPressed(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchDown(), CLIMBER_SUBSYSTEM));
     primaryButtonX.whenPressed(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchStop(), CLIMBER_SUBSYSTEM));
 
+    // Intake Controls
+    primaryButtonA.whenPressed(new InstantCommand(() -> {
+        INTAKE_SUBSYSTEM.armUp();
+        INTAKE_SUBSYSTEM.intake();
+      }
+    ));
+    primaryButtonA.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armDown()));
+    primaryButtonY.whenPressed(new InstantCommand(() -> {
+        INTAKE_SUBSYSTEM.armUp();
+        INTAKE_SUBSYSTEM.outtake();
+      }
+    ));
+    primaryButtonY.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armDown()));
+
+    // Shooter controls
+    primaryButtonB.whenPressed(new InstantCommand(() -> SHOOTER_SUBSYSTEM.shoot(0.9, 0.5)));
+    primaryButtonB.whenReleased(new InstantCommand(() -> SHOOTER_SUBSYSTEM.stop()));
   }
 
   public void initialize() {
