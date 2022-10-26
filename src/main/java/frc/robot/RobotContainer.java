@@ -78,17 +78,9 @@ public class RobotContainer {
     primaryButtonX.whenPressed(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchStop(), CLIMBER_SUBSYSTEM));
 
     // Intake Controls
-    primaryButtonA.whenPressed(new InstantCommand(() -> {
-        INTAKE_SUBSYSTEM.armUp();
-        INTAKE_SUBSYSTEM.intake();
-      }
-    ));
-    primaryButtonA.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armDown()));
-    primaryButtonY.whenPressed(new InstantCommand(() -> {
-        INTAKE_SUBSYSTEM.armUp();
-        INTAKE_SUBSYSTEM.outtake();
-      }
-    ));
+    primaryTriggerRight.whenActive(new InstantCommand(() -> INTAKE_SUBSYSTEM.intake()));
+    primaryTriggerLeft.whenActive(new InstantCommand(() -> INTAKE_SUBSYSTEM.outtake()));
+    primaryButtonA.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armUp()));
     primaryButtonY.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armDown()));
 
     // Shooter controls
