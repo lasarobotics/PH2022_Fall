@@ -37,8 +37,8 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void stop() {
-    m_ShooterMotor.set(ControlMode.PercentOutput, 0);
-    m_BeltMotor.set(ControlMode.PercentOutput, 0); 
+    m_ShooterMotor.stopMotor();
+    m_BeltMotor.stopMotor();
   }
 
   @Override
