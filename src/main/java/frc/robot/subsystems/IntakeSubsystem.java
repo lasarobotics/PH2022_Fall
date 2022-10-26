@@ -43,17 +43,25 @@ public class IntakeSubsystem extends SubsystemBase {
   public void intake() {
     m_rollerMotor.set(ControlMode.PercentOutput, +Constants.SPIN_MOTOR_SPEED);
   }
+
+  public void intakeAndOutakeStop() {
+    m_rollerMotor.stopMotor();
+  }
    
   public void outtake() {
     m_rollerMotor.set(ControlMode.PercentOutput, -Constants.SPIN_MOTOR_SPEED);
   }
 
-  public void armDown(){
+  public void armDown() {
     m_armMotor.set(ControlMode.PercentOutput, +Constants.ARM_MOTOR_SPEED);
   }
 
-  public void armUp(){
+  public void armUp() {
     m_armMotor.set(ControlMode.PercentOutput, -Constants.ARM_MOTOR_SPEED);
+  }
+
+  public void armStop() {
+    m_armMotor.stopMotor();
   }
 
   public void close() {
