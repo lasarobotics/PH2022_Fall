@@ -27,9 +27,9 @@ public final class Constants {
   
   // Drive hardware
   public static final int FRONT_LEFT_MOTOR_PORT = 2;
-  public static final int FRONT_RIGHT_MOTOR_PORT = 3;
-  public static final int REAR_LEFT_MOTOR_PORT = 4;
-  public static final int REAR_RIGHT_MOTOR_PORT = 5;
+  public static final int FRONT_RIGHT_MOTOR_PORT = 0;
+  public static final int REAR_LEFT_MOTOR_PORT = 13;
+  public static final int REAR_RIGHT_MOTOR_PORT = 1;
 
   // Shooter hardware
   public static final int SHOOTER_MOTOR_PORT = 12;
@@ -41,8 +41,10 @@ public final class Constants {
   public static final double CLIMBER_WINCH_MOTOR_MIN = 0.0;
   
   // Intake hardware
-  public static final int ARM_MOTOR_PORT = 3;
-  public static final int ROLLER_MOTOR_PORT = 4;
+  public static final int ARM_MOTOR_PORT = 4;
+  public static final int ROLLER_MOTOR_PORT = 5;
+  public static final int INTERNAL_MOTOR_PORT = 15;
   public static final double SPIN_MOTOR_SPEED = 0.5;
-  public static final double ARM_MOTOR_SPEED = 0.2;
+  public static final double ARM_MOTOR_SPEED = 0.7;
+  public static final double INTERNAL_MOTOR_SPEED = 0.5;
 }

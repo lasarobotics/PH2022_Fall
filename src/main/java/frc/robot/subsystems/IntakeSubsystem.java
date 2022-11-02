@@ -15,41 +15,50 @@ public class IntakeSubsystem extends SubsystemBase {
   public static class Hardware {
     private WPI_TalonSRX armMotor;
     private WPI_VictorSPX rollerMotor;
+    private WPI_TalonSRX internalMotor;
 
     public Hardware(WPI_TalonSRX armMotor, 
-                    WPI_VictorSPX rollerMotor) {
+                    WPI_VictorSPX rollerMotor,
+                    WPI_TalonSRX internalMotor) {
       this.armMotor = armMotor;
       this.rollerMotor = rollerMotor;
+      this.internalMotor = internalMotor;
     }
   }
 
 
   private final WPI_TalonSRX m_armMotor;
   private final WPI_VictorSPX m_rollerMotor;
+  private final WPI_TalonSRX m_internalMotor;
 
 
   /** Creates a new DriveSubsystem. */
   public IntakeSubsystem(Hardware intakeHardware) {
     this.m_armMotor = intakeHardware.armMotor;
     this.m_rollerMotor = intakeHardware.rollerMotor;
+    this.m_internalMotor = intakeHardware.internalMotor;
   }
 
   public static Hardware initializeHardware() {
     Hardware intakeHardware = new Hardware(new WPI_TalonSRX(Constants.ARM_MOTOR_PORT),
-                                           new WPI_VictorSPX(Constants.ROLLER_MOTOR_PORT));
+                                           new WPI_VictorSPX(Constants.ROLLER_MOTOR_PORT),
+                                           new WPI_TalonSRX(Constants.INTERNAL_MOTOR_PORT));
     return intakeHardware;
   }
 
   public void intake() {
     m_rollerMotor.set(ControlMode.PercentOutput, +Constants.SPIN_MOTOR_SPEED);
+    m_internalMotor.set(ControlMode.PercentOutput, +Constants.INTERNAL_MOTOR_SPEED);
   }
 
   public void intakeAndOutakeStop() {
     m_rollerMotor.stopMotor();
+    m_internalMotor.stopMotor();
   }
    
   public void outtake() {
     m_rollerMotor.set(ControlMode.PercentOutput, -Constants.SPIN_MOTOR_SPEED);
+    m_internalMotor.set(ControlMode.PercentOutput, -Constants.INTERNAL_MOTOR_SPEED);
   }
 
   public void armDown() {
@@ -67,5 +76,6 @@ public class IntakeSubsystem extends SubsystemBase {
   public void close() {
     m_armMotor.close();
     m_rollerMotor.close();
+    m_internalMotor.close();
   }
 }

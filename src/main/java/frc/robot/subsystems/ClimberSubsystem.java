@@ -37,11 +37,11 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void winchUp() {
-    winchSetPosition(Constants.CLIMBER_WINCH_MOTOR_MAX);
+    m_winchMotor.set(+0.5);
   }
 
   public void winchDown() {
-    winchSetPosition(Constants.CLIMBER_WINCH_MOTOR_MIN);
+    m_winchMotor.set(-0.5);
   }
 
   public void winchStop() {

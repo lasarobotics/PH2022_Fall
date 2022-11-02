@@ -75,13 +75,18 @@ public class RobotContainer {
     // Climber controls
     primaryDPadUp.whenPressed(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchUp(), CLIMBER_SUBSYSTEM));
     primaryDPadDown.whenPressed(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchDown(), CLIMBER_SUBSYSTEM));
-    primaryButtonX.whenPressed(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchStop(), CLIMBER_SUBSYSTEM));
+    primaryDPadUp.whenReleased(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchStop(), CLIMBER_SUBSYSTEM));
+    primaryDPadDown.whenReleased(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchStop(), CLIMBER_SUBSYSTEM));
 
     // Intake Controls
     primaryTriggerRight.whenActive(new InstantCommand(() -> INTAKE_SUBSYSTEM.intake()));
     primaryTriggerLeft.whenActive(new InstantCommand(() -> INTAKE_SUBSYSTEM.outtake()));
+    primaryTriggerRight.whenInactive(new InstantCommand(() -> INTAKE_SUBSYSTEM.intakeAndOutakeStop()));
+    primaryTriggerLeft.whenInactive(new InstantCommand(() -> INTAKE_SUBSYSTEM.intakeAndOutakeStop()));
     primaryButtonA.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armUp()));
     primaryButtonY.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armDown()));
+    primaryButtonA.whenReleased(new InstantCommand(() -> INTAKE_SUBSYSTEM.armStop()));
+    primaryButtonY.whenReleased(new InstantCommand(() -> INTAKE_SUBSYSTEM.armStop()));
 
     // Shooter controls
     primaryButtonB.whenPressed(new InstantCommand(() -> SHOOTER_SUBSYSTEM.shoot(0.9, 0.5)));

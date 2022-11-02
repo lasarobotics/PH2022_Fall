@@ -38,6 +38,9 @@ public class DriveSubsystem extends SubsystemBase implements AutoCloseable {
     this.m_lRearMotor = drivetrainHardware.lRearMotor;
     this.m_rRearMotor = drivetrainHardware.rRearMotor;
 
+    m_rFrontMotor.setInverted(true);
+    m_rRearMotor.setInverted(true);
+
     this.m_drivetrain = new MecanumDrive(m_lFrontMotor, m_lRearMotor, m_rFrontMotor, m_rRearMotor);
 
     m_drivetrain.setDeadband(deadband);
@@ -63,7 +66,7 @@ public class DriveSubsystem extends SubsystemBase implements AutoCloseable {
    * @param zRotation desired rotation in Z axis [-1.0, +1.0]
    */
   public void teleop(double ySpeed, double xSpeed, double zRotation) {
-    m_drivetrain.driveCartesian(ySpeed, xSpeed, zRotation);
+    m_drivetrain.driveCartesian(-ySpeed, xSpeed, zRotation);
   }
 
   @Override
