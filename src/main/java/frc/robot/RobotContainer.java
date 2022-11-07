@@ -53,6 +53,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
+  @SuppressWarnings("unused")
   private void configureButtonBindings() {
     // Primary controller buttons
     JoystickButton primaryButtonA = new JoystickButton(PRIMARY_CONTROLLER, Button.kA.value);
@@ -74,18 +75,18 @@ public class RobotContainer {
 
     // Climber controls
     primaryDPadUp.whenPressed(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchUp(), CLIMBER_SUBSYSTEM));
-    primaryDPadDown.whenPressed(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchDown(), CLIMBER_SUBSYSTEM));
     primaryDPadUp.whenReleased(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchStop(), CLIMBER_SUBSYSTEM));
+    primaryDPadDown.whenPressed(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchDown(), CLIMBER_SUBSYSTEM));
     primaryDPadDown.whenReleased(new InstantCommand(() -> CLIMBER_SUBSYSTEM.winchStop(), CLIMBER_SUBSYSTEM));
 
     // Intake Controls
     primaryTriggerRight.whenActive(new InstantCommand(() -> INTAKE_SUBSYSTEM.intake()));
-    primaryTriggerLeft.whenActive(new InstantCommand(() -> INTAKE_SUBSYSTEM.outtake()));
     primaryTriggerRight.whenInactive(new InstantCommand(() -> INTAKE_SUBSYSTEM.intakeAndOutakeStop()));
+    primaryTriggerLeft.whenActive(new InstantCommand(() -> INTAKE_SUBSYSTEM.outtake()));
     primaryTriggerLeft.whenInactive(new InstantCommand(() -> INTAKE_SUBSYSTEM.intakeAndOutakeStop()));
     primaryButtonA.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armUp()));
-    primaryButtonY.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armDown()));
     primaryButtonA.whenReleased(new InstantCommand(() -> INTAKE_SUBSYSTEM.armStop()));
+    primaryButtonY.whenPressed(new InstantCommand(() -> INTAKE_SUBSYSTEM.armDown()));
     primaryButtonY.whenReleased(new InstantCommand(() -> INTAKE_SUBSYSTEM.armStop()));
 
     // Shooter controls
